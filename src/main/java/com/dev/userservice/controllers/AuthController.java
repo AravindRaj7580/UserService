@@ -3,6 +3,7 @@ package com.dev.userservice.controllers;
 import com.dev.userservice.dtos.*;
 import com.dev.userservice.models.SessionStatus;
 import com.dev.userservice.services.AuthService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.web.SecurityFilterChain;
@@ -31,7 +32,7 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<UserDto> signUp(@RequestBody SignUpRequestDto request) {
+    public ResponseEntity<UserDto> signUp(@RequestBody SignUpRequestDto request){
         UserDto userDto = authService.signUp(request.getEmail(), request.getPassword());
         return new ResponseEntity<>(userDto, HttpStatus.OK);
     }
